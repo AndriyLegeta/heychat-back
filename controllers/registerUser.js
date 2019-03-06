@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 if(error && error.details){
     return res
         .status(HttpStatus.BAD_REQUEST)
-        .json({success: false, message: error.details})
+        .json({success: false, msg: error.details})
 
   }
 

@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const database = require('./config/secrets');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const cors = require('cors');
+const cors = require('cors');
 // const _ = require('lodash');
 
 const app = express();
 
-/*app.use(cors());*/
+app.use(cors());
 
 const server = require('http').createServer(app);
 /*const io = require('socket.io').listen(server);
