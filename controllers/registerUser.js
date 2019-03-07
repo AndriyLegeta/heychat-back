@@ -55,7 +55,7 @@ return bcrypt.hash(value.password, 10, (err, hash) =>{
     };
     User.create(body).then(user => {
         const token = jwt.sign({data: user}, database.secret, {
-            expiresIn: 120
+            expiresIn: '1h'
         });
         res.cookie('auth', token);
         res.status(HttpStatus.CREATED).json({success: true, message:'User created succeessfully', user, token})
