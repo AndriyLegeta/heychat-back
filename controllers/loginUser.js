@@ -1,11 +1,9 @@
-const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 const tofirstUpper = require('../helpers/firstUpper');
-const toLowerCase = require('../helpers/lowerCase');
 const database = require('../config/secrets');
 
 module.exports = async (req, res) => {
@@ -21,7 +19,7 @@ module.exports = async (req, res) => {
               return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({success: false, message:'Password is incorect'});
           }
           const token = jwt.sign({data: user}, database.secret, {
-              expiresIn: '12'
+              expiresIn: '1h'
           });
           res.cookie('auth', token);
           return res.status(HttpStatus.OK).json({success: true, message:'Login ssuccessful!', user, token});

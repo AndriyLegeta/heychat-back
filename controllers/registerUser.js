@@ -23,16 +23,17 @@ module.exports = async (req, res) => {
             .required()
     });
   const { error, value } = Joi.validate(req.body, schema);
-if(error && error.details){
+
+  if(error && error.details){
     return res
         .status(HttpStatus.BAD_REQUEST)
         .json({success: false, msg: error.details})
-
   }
 
 const userEmail = await User.findOne({email: toLowerCase(req.body.email)});
 if(userEmail){
-    return res.status(HttpStatus.CONFLICT)
+    return res
+        .status(HttpStatus.CONFLICT)
         .json({success: false, message:'Email already exist'})
 }
 
@@ -53,7 +54,7 @@ return bcrypt.hash(value.password, 10, (err, hash) =>{
         email: toLowerCase(value.email),
         password: hash
     };
-    User.create(body).then(user => {
+        User.create(body).then(user => {
         const token = jwt.sign({data: user}, database.secret, {
             expiresIn: '1h'
         });
