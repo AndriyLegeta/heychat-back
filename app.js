@@ -20,8 +20,8 @@ require('./socket/private')(io);*/
 
 
 const authRouter = require('./routes/authRouter');
-/*const posts = require('./routes/postRoutes');
-const users = require('./routes/userRoutes');
+const postsRouter = require('./routes/postRouter');
+/*const users = require('./routes/userRoutes');
 const friends = require('./routes/friendsRoutes');
 const message = require('./routes/messageRoutes');
 const image = require('./routes/imageRoutes');*/
@@ -34,11 +34,11 @@ app.use(cookieParser());
 mongoose.connect(database.url, { useNewUrlParser: true });
 
 app.use('/api/hey-chatapp', authRouter);
-/*app.use('/api/chatapp', posts);
-app.use('/api/chatapp', users);
-app.use('/api/chatapp', friends);
-app.use('/api/chatapp', message);
-app.use('/api/chatapp', image);*/
+app.use('/api/hey-chatapp', postsRouter);
+/*app.use('/api/hey-chatapp', users);
+app.use('/api/hey-chatapp', friends);
+app.use('/api/hey-chatapp', message);
+app.use('/api/hey-chatapp', image);*/
 
 server.listen(3000, () => {
     console.log('Listening 3000 !');
