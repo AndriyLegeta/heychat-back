@@ -11,13 +11,15 @@ const app = express();
 app.use(cors());
 
 const server = require('http').createServer(app);
-/*const io = require('socket.io').listen(server);
+const io = require('socket.io').listen(server);
+/*
 
 const { User } = require('./Helpers/UserClass');
 
 require('./socket/streams')(io, User, _);
 require('./socket/private')(io);*/
 
+require('./socket/streams')(io);
 
 const authRouter = require('./routes/authRouter');
 const postsRouter = require('./routes/postRouter');

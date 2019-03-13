@@ -31,9 +31,12 @@ module.exports = (req, res) => {
                 }
             }
         });
-        res.status(HttpStatus.OK).json({success: true, message: 'Post created', new_post})
+        res
+            .status(HttpStatus.OK)
+            .json({success: true, message: 'Post created', new_post});
     }).catch(err =>{
-                res.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .json({success: false, message: err});
+        res
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .json({success: false, message: err});
             });
 };
