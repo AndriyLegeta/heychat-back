@@ -1,16 +1,17 @@
-const Joi = require('joi');
 const Post = require('../models/post');
 const HttpStatus = require('http-status-codes');
-const User = require('../models/user');
 
 module.exports = async (req, res) => {
     const postId = req.body._id;
+    console.log('post',req.body);
     await Post.update({
-        _id: postId
-    }, {
+        _id: postId,
+            'likes.name': { $ne: req.user.name }
+    },
+        {
         $push:{
             likes:{
-                name: req.body.name
+                name: req.user.name
             }},
         $inc: {totalLikes:1}
     })
