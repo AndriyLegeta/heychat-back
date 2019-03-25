@@ -19,6 +19,7 @@ require('./socket/streams')(io);
 const authRouter = require('./routes/authRouter');
 const postsRouter = require('./routes/postRouter');
 const userRouter = require('./routes/userRouter');
+const friendsRouter = require('./routes/friendsRouter');
 
 
 app.use(express.json());
@@ -31,6 +32,7 @@ mongoose.connect(database.url, { useNewUrlParser: true });
 app.use('/api/hey-chatapp', authRouter);
 app.use('/api/hey-chatapp', postsRouter);
 app.use('/api/hey-chatapp', userRouter);
+app.use('/api/hey-chatapp', friendsRouter);
 
 
 server.listen(3000, () => {
